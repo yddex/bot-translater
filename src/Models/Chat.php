@@ -9,14 +9,13 @@ class Chat
     protected ?string $username;
     protected string $source_lang;
     protected string $target_lang;
-    protected DateTimeImmutable $register_at;
+   
     public function __construct(
         int $chat_id,
         string $first_name,
         ?string $username,
-        string $source_lang,
-        string $target_lang,
-        DateTimeImmutable $register_at
+        string $source_lang ='ru',
+        string $target_lang = 'en',
     )
     {
         $this->chat_id = $chat_id;
@@ -24,7 +23,6 @@ class Chat
         $this->username = $username;
         $this->source_lang = $source_lang;
         $this->target_lang = $target_lang;
-        $this->register_at = $register_at;
     }
 
 
@@ -55,12 +53,6 @@ class Chat
     public function getTargetLang()
     {
             return $this->target_lang;
-    }
-
-
-    public function getRegisterAt()
-    {
-            return $this->register_at;
     }
 
 

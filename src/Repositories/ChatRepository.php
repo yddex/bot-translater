@@ -7,8 +7,12 @@ use PDO;
 use Yddex\TranslateBot\Models\Chat;
 
 class ChatRepository
-{   
-    public function __construct(protected PDO $connect){}
+{
+    protected PDO $connect;
+    public function __construct(PDO $connect)
+    {
+        $this->connect = $connect;
+    }
 
     public function register(Chat $chat)
     {
@@ -56,9 +60,8 @@ class ChatRepository
         $username = $result['username'];
         $source_lang = $result['source_lang'];
         $target_lang = $result['target_lang'];
-        $register_at = new DateTimeImmutable($result['register_at']);
 
-        return new Chat($chat_id, $first_name, $username, $source_lang, $target_lang, $register_at);
+        return new Chat($chat_id, $first_name, $username, $source_lang, $target_lang);
     }
 
 }

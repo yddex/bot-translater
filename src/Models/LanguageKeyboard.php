@@ -37,7 +37,7 @@ class LanguageKeyboard
         $keyboard = [];
         $row = [];
         foreach(self::LANGS as $code => $lang){
-            $text = $currentLang == $code ? '•' . $lang : $lang; 
+            $text = $currentLang == $code ? '➥ ' . $lang: $lang; 
             $button = ['text' => $text, 'callback_data' => $prefix . ':' . $code];
             //В одной строке 2 клавиши
             if(count($row) < 2)

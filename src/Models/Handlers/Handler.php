@@ -1,6 +1,7 @@
 <?php
 namespace Yddex\TranslateBot\Models\Handlers;
 
+use Telegram\Bot\Objects\BaseObject;
 use Telegram\Bot\TelegramResponse;
 use TelegramBot;
 use Telegram\Bot\Objects\Update;
@@ -43,5 +44,5 @@ abstract class Handler
         }
        
     }
-    abstract function handle(Update $update);
+    abstract function handle(BaseObject $update);
 }

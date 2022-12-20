@@ -11,7 +11,7 @@ class TelegramBot extends Api
         return new Message($response->getDecodedBody());
     }
 
-    public function wfmSendRequest($method, $params = [])
+    public function anySendRequest($method, $params = [])
     {
         $response = $this->post($method, $params);
         return new Message($response->getDecodedBody());

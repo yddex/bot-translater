@@ -1,6 +1,7 @@
 <?php
 namespace Yddex\TranslateBot\Models\Handlers;
 use Dejurin\GoogleTranslateForFree;
+use Telegram\Bot\Objects\BaseObject;
 use Telegram\Bot\Objects\Update;
 use TelegramBot;
 use Yddex\TranslateBot\Models\Chat;
@@ -17,7 +18,7 @@ class MessageHandler extends Handler
         $this->translater = $translater;
     }
 
-    function handle(Update $update) 
+    function handle(BaseObject $update) 
     {
         $chat = $this->getChat($update['message']['chat']);
 

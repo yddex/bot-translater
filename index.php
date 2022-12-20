@@ -34,39 +34,77 @@ $translater = new GoogleTranslateForFree();
 $messageHandler = new MessageHandler($api, $chatRepository, $translater);
 $callbackHandler = new CallbackHandler($api, $chatRepository);
 
+
+
+
 //START
-//long polling
-while (true) {
-    if (isset($last_update)) {
-        $update = $api->getUpdates(['offset' => $last_update]);
-    } else {
-        $update = $api->getUpdates();
-    }
+//long polling для тестирования на локальном хосте, или домене без SSL(если он позволит)
+try {
 
-    print_r($update);
-
-    
-    if (count($update) !== 0) {
-        file_put_contents(__DIR__ . '/logs/updates_log.txt', print_r($update, 1), FILE_APPEND);
-
-        //Ветвление для выбора обработчика
-        if(isset($update[0]['message']))
-        {
-           $response =  $messageHandler->handle($update[0]);
-        }
-        else if(isset($update[0]['callback_query']))
-        {
-            try{
-                $response = $callbackHandler->handle($update[0]);
-            }
-            catch( TelegramResponseException $e){
-                print($e->getMessage() . PHP_EOL);
-            }
-            
+    while (true) {
+        if (isset($last_update)) {
+            $update = $api->getUpdates(['offset' => $last_update]);
+        } else {
+            $update = $api->getUpdates();
         }
 
-        $last_update = $update[0]['update_id'] + 1;
-    }
-    sleep(3);
+        print_r($update);
 
+
+        if (count($update) !== 0) {
+
+
+            //Ветвление для выбора обработчика
+            if (isset($update[0]['message'])) {
+                try{
+                    $response = $messageHandler->handle($update[0]);
+                }
+                catch(TelegramResponseException | Exception $e)
+                {
+                    Logger::logError($e);
+                }
+                
+            } 
+            else if (isset($update[0]['callback_query'])) {
+                try {
+                    $response = $callbackHandler->handle($update[0]);
+                } 
+                catch (TelegramResponseException $e) {
+                    Logger::logError($e);
+                }
+            }
+
+            $last_update = $update[0]['update_id'] + 1;
+        }
+        sleep(3);
+
+    }
 }
+catch(Throwable $e)
+{
+    Logger::logError($e);
+}
+
+//При деплое на сервер/хостинг раскоментить, а код сверху закоментить(или удалить)
+//Установить перед этим вебхук на домен с SSL 
+
+// $update = $api->getWebhookUpdates();
+//  //Ветвление для выбора обработчика
+//  if (isset($update['message'])) {
+//     try{
+//         $response = $messageHandler->handle($update);
+//     }
+//     catch(TelegramResponseException | Exception $e)
+//     {
+//         Logger::logError($e);
+//     }
+    
+// } 
+// else if (isset($update['callback_query'])) {
+//     try {
+//         $response = $callbackHandler->handle($update);
+//     } 
+//     catch (TelegramResponseException $e) {
+//         Logger::logError($e);
+//     }
+// }

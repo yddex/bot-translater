@@ -17,10 +17,11 @@ require_once(__DIR__ . '/TelegramBot.php');
 
 
 //Конфигурация
+//Требуемые переменные DB_HOST, DB_NAME, DB_PASSWORD, DB_USERNAME, BOT_TOKEN
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/.env');
 
-//Коннект к базе
+//Коннект к базе MySql
 $dsn = 'mysql:host=' . $_ENV['DB_HOST'] . ';dbname=' . $_ENV['DB_NAME'];
 $connect = new PDO($dsn, $_ENV['DB_USERNAME'], $_ENV['DB_PASSWORD'], [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
 

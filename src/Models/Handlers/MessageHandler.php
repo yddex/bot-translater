@@ -72,9 +72,9 @@ class MessageHandler extends Handler
     //Ответ на команду /start
     private function startAnswer()
     {   
-        $text = '<i>Вы отправляете - BOT переводит!</i>' . PHP_EOL .'Для настройки введите следующие команды:'. PHP_EOL.
-        '<b>/from</b> - с какого языка переводить' . PHP_EOL . 
-        '<b>/to</b> - на какой язык переводить' ;
+        $text = 'Напишите сообщение и бот отправит перевод.'. PHP_EOL .' Для перевода используется Google' . PHP_EOL .'Для настройки введите следующие команды:'. PHP_EOL.
+        '/from - с какого языка переводить' . PHP_EOL . 
+        '/to - на какой язык переводить' ;
         return [
             'text' => $text
         ];

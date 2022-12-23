@@ -32,7 +32,9 @@
 
 ## Как запустить?
 `git clone https://github.com/yddex/bot-translater.git` - загрузить репозиторий
+
 `composer install` - установить зависимости
+
 Создать файл `.env`, где определить переменные: 
 - `BOT_TOKEN='token'` - Токен полученный при регистрации бота в BotFather
 - `DB_HOST='localhost'` - Хост для подключения к БД

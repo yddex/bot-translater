@@ -1,4 +1,4 @@
-### Telegram Bot Translater
+# Telegram Bot Translater
 <hr>
 
 #### Стек
@@ -7,7 +7,7 @@
 - [Telegram Bot Sdk](https://github.com/irazasyed/telegram-bot-sdk) - Библиотека для удобного взаимодействия с Telegram Bot Api
 - [GoogleFreeTranslater](https://github.com/dejurin/php-google-translate-for-free) - Легкая библиотека для перевода с помощью Google посредством POST запроса.
 
-#### Описание
+## Описание
 
 Чат-бот в мессенджере Telegram для быстрого перевода предложений или слов. 
 
@@ -30,7 +30,7 @@
 
 **Выбранные настройки запоминаются ботом, и будут использоваться при каждом переводе.**
 
-### Как запустить?
+## Как запустить?
 `git clone https://github.com/yddex/bot-translater.git` - загрузить репозиторий
 `composer install` - установить зависимости
 Создать файл `.env`, где определить переменные: 

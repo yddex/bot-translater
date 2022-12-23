@@ -1,7 +1,6 @@
 # Telegram Bot Translater
-<hr>
 
-#### Стек
+### Стек
 - PHP 8.1
 - MySql
 - [Telegram Bot Sdk](https://github.com/irazasyed/telegram-bot-sdk) - Библиотека для удобного взаимодействия с Telegram Bot Api
